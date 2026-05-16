@@ -4,8 +4,8 @@
     "Title": "Приготувати сніданок",
     "Content": "Яєчня та кава",
     "CreatedAt": "2026-05-12T17:09:05.7765611Z",
-    "UpdatedAt": "2026-05-12T17:50:06.2125533Z",
-    "CategoryId": null,
+    "UpdatedAt": "2026-05-16T21:58:32.8662457Z",
+    "CategoryId": "33333333-3333-3333-3333-333333333333",
     "Priority": 1,
     "IsPinned": false,
     "ColorHex": "#A8D5BA",
@@ -13,7 +13,7 @@
       {
         "Id": "b1ccd458-6156-49d7-96f4-67376e7c8ea5",
         "Message": "Нагадування для: Приготувати сніданок",
-        "ReminderTime": "2026-05-12T20:50:00+03:00",
+        "ReminderTime": "2026-05-17T00:59:00",
         "IsCompleted": true,
         "NoteId": "6d5587b1-7afd-40cb-b69c-c4bd271750c4"
       }
@@ -25,8 +25,8 @@
     "Title": "Зробити домашню",
     "Content": "Вивчити слова(10 штук)",
     "CreatedAt": "2026-05-12T17:50:07.8937681Z",
-    "UpdatedAt": "2026-05-12T18:01:24.598213Z",
-    "CategoryId": null,
+    "UpdatedAt": "2026-05-16T21:54:35.5480791Z",
+    "CategoryId": "c6d90a74-8d72-4bfd-8ac7-6b9a097313ca",
     "Priority": 1,
     "IsPinned": false,
     "ColorHex": "#A8D5BA",
@@ -46,11 +46,11 @@
     "Title": "Приготувати каву",
     "Content": "Кава(арабіка)",
     "CreatedAt": "2026-05-12T18:01:48.0148255Z",
-    "UpdatedAt": "2026-05-16T21:40:44.3921707Z",
-    "CategoryId": "fd6a0971-1ab2-4f72-b681-7a5f16b918ff",
+    "UpdatedAt": "2026-05-16T21:54:39.3794166Z",
+    "CategoryId": "d5dfdd97-0fb6-4787-87b5-09bcc0b36265",
     "Priority": 1,
-    "IsPinned": true,
-    "ColorHex": "#B3E5FC",
+    "IsPinned": false,
+    "ColorHex": "#A8D5BA",
     "Reminders": [
       {
         "Id": "37d521c1-95e8-4f24-8491-0edf7292621d",
@@ -67,12 +67,41 @@
     "Title": "Зробити 10 лабораторниз сьогодні",
     "Content": "",
     "CreatedAt": "2026-05-16T20:58:51.8646298Z",
-    "UpdatedAt": "2026-05-16T20:59:11.5241221Z",
-    "CategoryId": "e7c9001d-c83c-4d71-a472-21258fb7eeda",
+    "UpdatedAt": "2026-05-16T21:58:53.6308372Z",
+    "CategoryId": "22222222-2222-2222-2222-222222222222",
     "Priority": 1,
-    "IsPinned": false,
+    "IsPinned": true,
     "ColorHex": "#A8D5BA",
-    "Reminders": [],
+    "Reminders": [
+      {
+        "Id": "dcc5946d-2650-4e89-bcc2-8cb950d055ff",
+        "Message": "Нагадування для: Зробити 10 лабораторниз сьогодні",
+        "ReminderTime": "2026-05-17T12:59:00+03:00",
+        "IsCompleted": false,
+        "NoteId": "e8aa90f1-d6b7-442d-8c28-40e0127c229a"
+      }
+    ],
+    "Tags": []
+  },
+  {
+    "Id": "345d9bec-c482-4d2d-b8db-e45eb7ca42fd",
+    "Title": "Подивитись євробачення 2026",
+    "Content": "о 22:00, 16.05",
+    "CreatedAt": "2026-05-16T22:00:39.0643773Z",
+    "UpdatedAt": "2026-05-16T22:02:02.8407214Z",
+    "CategoryId": "22222222-2222-2222-2222-222222222222",
+    "Priority": 2,
+    "IsPinned": false,
+    "ColorHex": "#D1C4E9",
+    "Reminders": [
+      {
+        "Id": "2b43cdd1-eb51-4c25-a518-d68708acfbb4",
+        "Message": "Нагадування для: Подивитись євробачення 2026",
+        "ReminderTime": "2026-05-17T01:02:00+03:00",
+        "IsCompleted": true,
+        "NoteId": "345d9bec-c482-4d2d-b8db-e45eb7ca42fd"
+      }
+    ],
     "Tags": []
   }
 ]

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using ElectronicNotepad.Core.Interfaces;
 using ElectronicNotepad.Core.Models;
 
@@ -8,55 +10,74 @@ namespace ElectronicNotepad.Infrastructure.Services;
 
 public class ReminderTimerService : IReminderService
 {
-    private readonly System.Timers.Timer _timer;
     private readonly List<Reminder> _reminders = new();
+    private readonly CancellationTokenSource _cts = new();
     public event Action<Reminder>? OnReminderTriggered;
 
     public ReminderTimerService()
     {
-        _timer = new System.Timers.Timer(1000);
-        _timer.Elapsed += CheckReminders;
-        _timer.Start();
+        Task.Run(CheckLoop, _cts.Token);
+    }
+
+    private async Task CheckLoop()
+    {
+        while (!_cts.Token.IsCancellationRequested)
+        {
+            var now = DateTime.Now;
+            List<Reminder> triggered;
+
+            lock (_reminders)
+            {
+                triggered = _reminders
+                    .Where(r => r.ReminderTime <= now && !r.IsCompleted)
+                    .ToList();
+            }
+
+            foreach (var reminder in triggered)
+            {
+                reminder.IsCompleted = true;
+                OnReminderTriggered?.Invoke(reminder);
+            }
+
+            await Task.Delay(1000);
+        }
     }
 
     public void SetReminder(Reminder reminder)
     {
-        var existing = _reminders.FirstOrDefault(r => r.Id == reminder.Id);
-        if (existing != null)
+        lock (_reminders)
         {
-            existing.Message = reminder.Message;
-            existing.ReminderTime = reminder.ReminderTime;
-            existing.IsCompleted = reminder.IsCompleted;
-        }
-        else
-        {
-            _reminders.Add(reminder);
+            var existing = _reminders.FirstOrDefault(r => r.Id == reminder.Id);
+            if (existing != null)
+            {
+                existing.Message = reminder.Message;
+                existing.ReminderTime = reminder.ReminderTime;
+                existing.IsCompleted = reminder.IsCompleted;
+            }
+            else
+            {
+                _reminders.Add(reminder);
+            }
         }
     }
 
     public void CancelReminder(Guid reminderId)
     {
-        var reminder = _reminders.FirstOrDefault(r => r.Id == reminderId);
-        if (reminder != null)
+        lock (_reminders)
         {
-            _reminders.Remove(reminder);
+            var reminder = _reminders.FirstOrDefault(r => r.Id == reminderId);
+            if (reminder != null)
+            {
+                _reminders.Remove(reminder);
+            }
         }
     }
 
     public void ClearRemindersForNote(Guid noteId)
     {
-        _reminders.RemoveAll(r => r.NoteId == noteId);
-    }
-
-    private void CheckReminders(object? sender, System.Timers.ElapsedEventArgs e)
-    {
-        var now = DateTime.Now;
-        var triggeredReminders = _reminders.Where(r => r.ReminderTime <= now && !r.IsCompleted).ToList();
-
-        foreach (var reminder in triggeredReminders)
+        lock (_reminders)
         {
-            reminder.IsCompleted = true;
-            OnReminderTriggered?.Invoke(reminder);
+            _reminders.RemoveAll(r => r.NoteId == noteId);
         }
     }
 }
