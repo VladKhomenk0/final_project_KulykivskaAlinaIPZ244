@@ -26,6 +26,7 @@ public class MainViewModel : ViewModelBase
     public RelayCommand RedoCommand { get; set; }
     public RelayCommand ChangeThemeCommand { get; set; }
     public RelayCommand TogglePinCommand { get; }
+    public RelayCommand DuplicateCommand { get; }
 
     public string ThemeIcon => _themeService.IsDarkTheme ? "☀️" : "🌙";
     public string ThemeName => _themeService.IsDarkTheme ? "Світла тема" : "Темна тема";
@@ -57,6 +58,10 @@ public class MainViewModel : ViewModelBase
                 UpdateNoteWithUndo(oldState, note);
             }
         });
+        DuplicateCommand = new RelayCommand(obj => 
+        {
+            if (obj is Note note) DuplicateNote(note);
+        });
 
         _themeService.ThemeChanged += (isDark) => 
         {
@@ -71,6 +76,19 @@ public class MainViewModel : ViewModelBase
     {
         var command = new AddNoteCommand(_repository, note, RefreshNotes);
         _undoManager.Execute(command);
+    }
+
+    public void DuplicateNote(Note note)
+    {
+        var duplicate = new Note
+        {
+            Title = note.Title + " (копія)",
+            Content = note.Content,
+            CategoryId = note.CategoryId,
+            Priority = note.Priority,
+            IsPinned = note.IsPinned
+        };
+        AddNoteWithUndo(duplicate);
     }
 
     public void DeleteNoteWithUndo(Note note)
