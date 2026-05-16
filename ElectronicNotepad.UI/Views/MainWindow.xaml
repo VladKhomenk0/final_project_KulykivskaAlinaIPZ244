@@ -90,12 +90,15 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Змінити" Click="EditNote_Click" 
                     Height="50" FontSize="14" Margin="0,0,5,0" Background="#D0E8D0"/>
-            <Button Grid.Column="1" Content="Бекап" Click="Backup_Click" 
+            <Button Grid.Column="1" Content="Аналітика" Click="ShowAnalytics_Click" 
+                    Height="50" FontSize="14" Margin="5,0,5,0" Background="#D0E0F0"/>
+            <Button Grid.Column="2" Content="Бекап" Click="Backup_Click" 
                     Height="50" FontSize="14" Margin="5,0,5,0" Background="#F0F0D0"/>
-            <Button Grid.Column="2" Content="Видалити" Click="DeleteNote_Click" 
+            <Button Grid.Column="3" Content="Видалити" Click="DeleteNote_Click" 
                     Height="50" FontSize="14" Margin="5,0,0,0" Background="#F1D1D1"/>
         </Grid>
     </Grid>

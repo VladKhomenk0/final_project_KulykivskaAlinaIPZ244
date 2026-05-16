@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElectronicNotepad.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9ec8daa60309fdd42fdfe70ab9bd9c443ba2d81")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ced23a1fb1d1c9a949aa672acf6ab76709e2776")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElectronicNotepad.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElectronicNotepad.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

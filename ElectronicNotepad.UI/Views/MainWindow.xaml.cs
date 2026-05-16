@@ -37,6 +37,20 @@ public partial class MainWindow : Window
         LoadRemindersToService();
     }
 
+    private void ShowAnalytics_Click(object sender, RoutedEventArgs e)
+    {
+        if (NotesList.SelectedItem is Note selectedNote)
+        {
+            var viewModel = new NoteAnalyticsViewModel(selectedNote);
+            var window = new NoteAnalyticsWindow
+            {
+                DataContext = viewModel,
+                Owner = this
+            };
+            window.ShowDialog();
+        }
+    }
+
     private void Backup_Click(object sender, RoutedEventArgs e)
     {
         try
