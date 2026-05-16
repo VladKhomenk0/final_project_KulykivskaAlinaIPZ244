@@ -16,6 +16,7 @@ public partial class MainWindow : Window
 {
     private readonly NoteRepository _repo;
     private readonly ReminderTimerService _reminderService;
+    private readonly IBackupService _backupService;
     private readonly IThemeService _themeService;
     private readonly ISettingsService _settingsService;
 
@@ -25,6 +26,7 @@ public partial class MainWindow : Window
         var context = new FileStorageContext();
         _repo = new NoteRepository(context);
         _reminderService = new ReminderTimerService();
+        _backupService = new BackupService();
         _settingsService = new SettingsService();
         _themeService = new ThemeService(_settingsService);
         
@@ -33,6 +35,20 @@ public partial class MainWindow : Window
         DataContext = new MainViewModel(_repo, _themeService);
         
         LoadRemindersToService();
+    }
+
+    private void Backup_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var context = new FileStorageContext();
+            var backupPath = _backupService.CreateBackup(context.FilePath);
+            MessageBox.Show($"Резервну копію створено за шляхом:\n{backupPath}", "Успіх", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Помилка створення бекапу: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 
     private void LoadRemindersToService()
