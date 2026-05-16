@@ -1,0 +1,120 @@
+<Window x:Class="ElectronicNotepad.UI.Views.AddNoteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редагування" Height="600" Width="550" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource WindowBgBrush}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ButtonBgBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonFgBrush}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Background" Value="{DynamicResource CardBgBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource HeaderBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource SubHeaderBrush}"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Заголовок" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+        <TextBox Grid.Row="1" Text="{Binding NoteTitle, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Margin="0,0,0,15"/>
+
+        <Grid Grid.Row="2" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="0,0,10,0">
+                <TextBlock Text="Категорія" FontSize="12"/>
+                <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory, ValidatesOnNotifyDataErrors=True}" DisplayMemberPath="Name" Height="35">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Style.Triggers>
+                                <Trigger Property="Validation.HasError" Value="true">
+                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                                    <Setter Property="BorderBrush" Value="Red"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <TextBlock Text="Пріоритет" FontSize="12"/>
+                <ComboBox ItemsSource="{Binding PriorityLevels}" SelectedItem="{Binding Priority}" Height="35"/>
+            </StackPanel>
+        </Grid>
+        
+        <TextBlock Grid.Row="3" Text="Зміст" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+        <TextBox Grid.Row="4" Text="{Binding CurrentNote.Content, UpdateSourceTrigger=PropertyChanged}" 
+                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="0,0,0,15" MinHeight="100"/>
+
+        <CheckBox Grid.Row="5" Content="Увімкнути нагадування" IsChecked="{Binding HasReminder}" 
+                  Margin="0,0,0,15" VerticalContentAlignment="Center" Foreground="{DynamicResource HeaderBrush}"/>
+
+        <GroupBox Grid.Row="6" Header="Нагадування" 
+                  Visibility="{Binding HasReminder, Converter={StaticResource BoolToVis}}" 
+                  Margin="0,0,0,20" Padding="15" BorderBrush="{DynamicResource BorderBrush}" Foreground="{DynamicResource SubHeaderBrush}">
+            <StackPanel>
+                <TextBlock Text="Про що нагадати?" FontSize="12" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding ReminderMessage, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Margin="0,0,0,12"/>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Коли?" FontSize="12" Margin="0,0,0,5"/>
+                        <DatePicker SelectedDate="{Binding ReminderDate}" Margin="0,0,15,0" Height="35"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="О котрій?" FontSize="12" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding ReminderTimeText, UpdateSourceTrigger=LostFocus}" 
+                                 Width="80" Height="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        
+        <Button Grid.Row="7" Content="Зберегти" Command="{Binding SaveCommand}" 
+                Height="45" Click="SaveButton_Click" FontSize="16"/>
+    </Grid>
+</Window>

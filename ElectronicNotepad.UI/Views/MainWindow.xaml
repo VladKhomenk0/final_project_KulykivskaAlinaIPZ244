@@ -1,0 +1,99 @@
+<Window x:Class="ElectronicNotepad.UI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Пам'ятайка" Height="960" Width="540" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource WindowBgBrush}">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ButtonBgBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ButtonFgBrush}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,30">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Пам'ятайка" FontSize="42" FontWeight="Bold" 
+                           Foreground="{DynamicResource HeaderBrush}" HorizontalAlignment="Center"/>
+                <TextBlock Text="Електронний записник з нагадуваннями" FontSize="16" 
+                           Foreground="{DynamicResource SubHeaderBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+            </StackPanel>
+            <Button Content="{Binding ThemeIcon}" ToolTip="{Binding ThemeName}" 
+                    HorizontalAlignment="Right" VerticalAlignment="Top" 
+                    Width="50" Height="50" Command="{Binding ChangeThemeCommand}"
+                    Background="{DynamicResource ButtonBgBrush}" FontSize="20">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="25"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="+ Нова нотатка" Click="AddNote_Click" 
+                        Height="60" FontSize="18" Background="#C1E1C1"/>
+                <Button Grid.Column="1" Content="↶" Command="{Binding UndoCommand}" 
+                        Width="50" Height="60" Margin="12,0,0,0" ToolTip="Відмінити дію" Background="#B0B0B0" FontSize="20"/>
+                <Button Grid.Column="2" Content="↷" Command="{Binding RedoCommand}" 
+                        Width="50" Height="60" Margin="8,0,0,0" ToolTip="Повторити дію" Background="#B0B0B0" FontSize="20"/>
+            </Grid>
+        </StackPanel>
+
+        <ListBox Grid.Row="2" ItemsSource="{Binding Notes}" DisplayMemberPath="Title" 
+                 x:Name="NotesList" MouseDoubleClick="NotesList_MouseDoubleClick"
+                 Background="{DynamicResource CardBgBrush}" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"
+                 Margin="0,0,0,25">
+            <ListBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Padding" Value="20,15"/>
+                    <Setter Property="Margin" Value="0,4"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Foreground" Value="{DynamicResource HeaderBrush}"/>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#D0E8D0"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#2F4F4F"/>
+                    </Style.Resources>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Змінити" Click="EditNote_Click" 
+                    Height="50" FontSize="14" Margin="0,0,5,0" Background="#D0E8D0"/>
+            <Button Grid.Column="1" Content="Видалити" Click="DeleteNote_Click" 
+                    Height="50" FontSize="14" Margin="5,0,0,0" Background="#F1D1D1"/>
+        </Grid>
+    </Grid>
+</Window>

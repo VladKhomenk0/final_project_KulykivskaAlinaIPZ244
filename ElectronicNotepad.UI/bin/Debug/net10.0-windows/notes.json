@@ -1,0 +1,59 @@
+[
+  {
+    "Id": "6d5587b1-7afd-40cb-b69c-c4bd271750c4",
+    "Title": "Приготувати сніданок",
+    "Content": "Яєчня та кава",
+    "CreatedAt": "2026-05-12T17:09:05.7765611Z",
+    "UpdatedAt": "2026-05-12T17:50:06.2125533Z",
+    "CategoryId": null,
+    "Priority": 1,
+    "Reminders": [
+      {
+        "Id": "b1ccd458-6156-49d7-96f4-67376e7c8ea5",
+        "Message": "Нагадування для: Приготувати сніданок",
+        "ReminderTime": "2026-05-12T20:50:00+03:00",
+        "IsCompleted": true,
+        "NoteId": "6d5587b1-7afd-40cb-b69c-c4bd271750c4"
+      }
+    ],
+    "Tags": []
+  },
+  {
+    "Id": "600551de-53d1-4954-861a-f9e8f6ecc5fc",
+    "Title": "Зробити домашню",
+    "Content": "Вивчити слова(10 штук)",
+    "CreatedAt": "2026-05-12T17:50:07.8937681Z",
+    "UpdatedAt": "2026-05-12T18:01:24.598213Z",
+    "CategoryId": null,
+    "Priority": 1,
+    "Reminders": [
+      {
+        "Id": "a707c0fd-7e3e-4dc2-b875-6559c7e2adf0",
+        "Message": "Зробити домашню",
+        "ReminderTime": "2026-05-12T21:01:00+03:00",
+        "IsCompleted": true,
+        "NoteId": "600551de-53d1-4954-861a-f9e8f6ecc5fc"
+      }
+    ],
+    "Tags": []
+  },
+  {
+    "Id": "bdaf0a8d-1ec4-459b-b01f-879bf9baa4fc",
+    "Title": "Приготувати каву",
+    "Content": "Кава(арабіка)",
+    "CreatedAt": "2026-05-12T18:01:48.0148255Z",
+    "UpdatedAt": "2026-05-12T18:03:21.6512771Z",
+    "CategoryId": null,
+    "Priority": 1,
+    "Reminders": [
+      {
+        "Id": "37d521c1-95e8-4f24-8491-0edf7292621d",
+        "Message": "Приготувати каву",
+        "ReminderTime": "2026-05-12T21:03:00+03:00",
+        "IsCompleted": true,
+        "NoteId": "bdaf0a8d-1ec4-459b-b01f-879bf9baa4fc"
+      }
+    ],
+    "Tags": []
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "ElectronicNotepad.UI/1.0.0": {
+        "dependencies": {
+          "ElectronicNotepad.Core": "1.0.0",
+          "ElectronicNotepad.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "ElectronicNotepad.UI.dll": {}
+        }
+      },
+      "ElectronicNotepad.Core/1.0.0": {
+        "runtime": {
+          "ElectronicNotepad.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ElectronicNotepad.Infrastructure/1.0.0": {
+        "dependencies": {
+          "ElectronicNotepad.Core": "1.0.0"
+        },
+        "runtime": {
+          "ElectronicNotepad.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ElectronicNotepad.UI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ElectronicNotepad.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ElectronicNotepad.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

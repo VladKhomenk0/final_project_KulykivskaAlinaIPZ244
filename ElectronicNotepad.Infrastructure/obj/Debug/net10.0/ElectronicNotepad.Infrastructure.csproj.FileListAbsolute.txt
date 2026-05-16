@@ -1,0 +1,16 @@
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\bin\Debug\net10.0\ElectronicNotepad.Infrastructure.deps.json
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\bin\Debug\net10.0\ElectronicNotepad.Infrastructure.dll
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\bin\Debug\net10.0\ElectronicNotepad.Infrastructure.pdb
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\bin\Debug\net10.0\ElectronicNotepad.Core.dll
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\bin\Debug\net10.0\ElectronicNotepad.Core.pdb
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.AssemblyInfo.cs
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\Electron.0BBE91BE.Up2Date
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.dll
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\refint\ElectronicNotepad.Infrastructure.dll
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.pdb
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ref\ElectronicNotepad.Infrastructure.dll
+C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.Infrastructure\obj\Debug\net10.0\ElectronicNotepad.Infrastructure.sourcelink.json
