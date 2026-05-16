@@ -92,6 +92,14 @@ public partial class MainWindow : Window
         OpenEditor(newNote);
     }
 
+    private void DuplicateNote_Click(object sender, RoutedEventArgs e)
+    {
+        if (NotesList.SelectedItem is Note selectedNote)
+        {
+            ((MainViewModel)DataContext).DuplicateNote(selectedNote);
+        }
+    }
+
     private void EditNote_Click(object sender, RoutedEventArgs e)
     {
         if (NotesList.SelectedItem is Note selectedNote)
