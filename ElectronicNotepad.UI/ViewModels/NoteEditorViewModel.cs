@@ -17,32 +17,6 @@ public class NoteEditorViewModel : ViewModelBase
     public ObservableCollection<Category> Categories { get; }
     public IEnumerable<PriorityLevel> PriorityLevels => Enum.GetValues(typeof(PriorityLevel)).Cast<PriorityLevel>();
 
-    private bool _hasReminder;
-    public bool HasReminder
-    {
-        get => _hasReminder;
-        set 
-        {
-            if (SetProperty(ref _hasReminder, value))
-            {
-                if (!value)
-                {
-                    Reminders.Clear();
-                    CurrentNote.Reminders.Clear();
-                    RemoveErrors(nameof(ReminderMessage));
-                }
-                else if (Reminders.Count == 0)
-                {
-                    AddDefaultReminder();
-                }
-            }
-        }
-    }
-
-    public ObservableCollection<Reminder> Reminders { get; }
-    
-    public Reminder? ActiveReminder => Reminders.FirstOrDefault();
-
     public string NoteTitle
     {
         get => CurrentNote.Title;
@@ -68,6 +42,32 @@ public class NoteEditorViewModel : ViewModelBase
     {
         "#A8D5BA", "#FFD1DC", "#FFECB3", "#B3E5FC", "#D1C4E9", "#E1F5FE", "#FFFFFF"
     };
+
+    private bool _hasReminder;
+    public bool HasReminder
+    {
+        get => _hasReminder;
+        set 
+        {
+            if (SetProperty(ref _hasReminder, value))
+            {
+                if (!value)
+                {
+                    Reminders.Clear();
+                    CurrentNote.Reminders.Clear();
+                    RemoveErrors(nameof(ReminderMessage));
+                }
+                else if (Reminders.Count == 0)
+                {
+                    AddDefaultReminder();
+                }
+            }
+        }
+    }
+
+    public ObservableCollection<Reminder> Reminders { get; }
+    
+    public Reminder? ActiveReminder => Reminders.FirstOrDefault();
 
     public string ReminderMessage
     {
