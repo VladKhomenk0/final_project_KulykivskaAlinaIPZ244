@@ -1,0 +1,45 @@
+<Window x:Class="ElectronicNotepad.UI.Views.NoteAnalyticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Аналітика нотатки" Height="400" Width="450" 
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="{DynamicResource WindowBgBrush}">
+    <Grid Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Статистика вмісту" FontSize="24" FontWeight="Bold" 
+                   Foreground="{DynamicResource HeaderBrush}" Margin="0,0,0,20"/>
+        
+        <TextBlock Grid.Row="1" Text="{Binding Title}" FontSize="18" 
+                   Foreground="{DynamicResource SubHeaderBrush}" Margin="0,0,0,25" TextWrapping="Wrap"/>
+
+        <StackPanel Grid.Row="2">
+            <UniformGrid Columns="2">
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Слів:" FontSize="14" Foreground="{DynamicResource SubHeaderBrush}"/>
+                    <TextBlock Text="{Binding WordCount}" FontSize="20" FontWeight="SemiBold" Foreground="{DynamicResource HeaderBrush}"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Символів:" FontSize="14" Foreground="{DynamicResource SubHeaderBrush}"/>
+                    <TextBlock Text="{Binding CharacterCount}" FontSize="20" FontWeight="SemiBold" Foreground="{DynamicResource HeaderBrush}"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Рядків:" FontSize="14" Foreground="{DynamicResource SubHeaderBrush}"/>
+                    <TextBlock Text="{Binding LineCount}" FontSize="20" FontWeight="SemiBold" Foreground="{DynamicResource HeaderBrush}"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Час читання:" FontSize="14" Foreground="{DynamicResource SubHeaderBrush}"/>
+                    <TextBlock Text="{Binding ReadingTime}" FontSize="20" FontWeight="SemiBold" Foreground="{DynamicResource HeaderBrush}"/>
+                </StackPanel>
+            </UniformGrid>
+        </StackPanel>
+
+        <Button Grid.Row="3" Content="Закрити" Click="Close_Click" 
+                Height="45" Background="{DynamicResource ButtonBgBrush}" Foreground="{DynamicResource ButtonFgBrush}" FontSize="16"/>
+    </Grid>
+</Window>
