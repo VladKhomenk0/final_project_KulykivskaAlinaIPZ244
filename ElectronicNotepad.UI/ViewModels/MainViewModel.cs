@@ -22,9 +22,10 @@ public class MainViewModel : ViewModelBase
     public ObservableCollection<Note> Notes { get; set; }
     public ObservableCollection<Category> Categories { get; }
     
-    public RelayCommand UndoCommand { get; }
-    public RelayCommand RedoCommand { get; }
-    public RelayCommand ChangeThemeCommand { get; }
+    public RelayCommand UndoCommand { get; set; }
+    public RelayCommand RedoCommand { get; set; }
+    public RelayCommand ChangeThemeCommand { get; set; }
+    public RelayCommand TogglePinCommand { get; }
 
     public string ThemeIcon => _themeService.IsDarkTheme ? "☀️" : "🌙";
     public string ThemeName => _themeService.IsDarkTheme ? "Світла тема" : "Темна тема";
@@ -35,18 +36,35 @@ public class MainViewModel : ViewModelBase
         _searchService = new SearchService();
         _themeService = themeService;
         _allNotes = _repository.GetAllNotes().ToList();
+        
         Notes = new ObservableCollection<Note>(_allNotes);
         Categories = new ObservableCollection<Category>(_repository.GetAllCategories());
 
         UndoCommand = new RelayCommand(obj => { _undoManager.Undo(); }, obj => _undoManager.CanUndo);
         RedoCommand = new RelayCommand(obj => { _undoManager.Redo(); }, obj => _undoManager.CanRedo);
         ChangeThemeCommand = new RelayCommand(obj => { _themeService.ToggleTheme(); });
+        TogglePinCommand = new RelayCommand(obj => 
+        {
+            if (obj is Note note)
+            {
+                var oldState = new Note
+                {
+                    Id = note.Id, Title = note.Title, Content = note.Content, 
+                    CategoryId = note.CategoryId, Priority = note.Priority, 
+                    IsPinned = note.IsPinned, Reminders = new List<Reminder>(note.Reminders)
+                };
+                note.IsPinned = !note.IsPinned;
+                UpdateNoteWithUndo(oldState, note);
+            }
+        });
 
         _themeService.ThemeChanged += (isDark) => 
         {
             OnPropertyChanged(nameof(ThemeIcon));
             OnPropertyChanged(nameof(ThemeName));
         };
+
+        RefreshNotes();
     }
 
     public void AddNoteWithUndo(Note note)
@@ -104,8 +122,10 @@ public class MainViewModel : ViewModelBase
             SelectedCategoryFilter?.Id, 
             SelectedPriorityFilter);
 
+        var sorted = filtered.OrderByDescending(n => n.IsPinned).ThenByDescending(n => n.CreatedAt);
+
         Notes.Clear();
-        foreach (var note in filtered)
+        foreach (var note in sorted)
         {
             Notes.Add(note);
         }
