@@ -6,6 +6,7 @@ using ElectronicNotepad.Core.Models;
 using ElectronicNotepad.UI.Utils;
 using ElectronicNotepad.Core.Enums;
 using System;
+using ElectronicNotepad.Core.Services;
 using ElectronicNotepad.UI.Services;
 
 namespace ElectronicNotepad.UI.ViewModels;
@@ -13,6 +14,7 @@ namespace ElectronicNotepad.UI.ViewModels;
 public class MainViewModel : ViewModelBase
 {
     private readonly INoteRepository _repository;
+    private readonly ISearchService _searchService;
     private readonly IThemeService _themeService;
     private readonly UndoManager _undoManager = new();
     private List<Note> _allNotes;
@@ -30,6 +32,7 @@ public class MainViewModel : ViewModelBase
     public MainViewModel(INoteRepository repository, IThemeService themeService)
     {
         _repository = repository;
+        _searchService = new SearchService();
         _themeService = themeService;
         _allNotes = _repository.GetAllNotes().ToList();
         Notes = new ObservableCollection<Note>(_allNotes);
@@ -64,11 +67,45 @@ public class MainViewModel : ViewModelBase
         _undoManager.Execute(command);
     }
 
+    private string _searchText = string.Empty;
+    public string SearchText
+    {
+        get => _searchText;
+        set { if (SetProperty(ref _searchText, value)) ApplyFilters(); }
+    }
+
+    private Category? _selectedCategoryFilter;
+    public Category? SelectedCategoryFilter
+    {
+        get => _selectedCategoryFilter;
+        set { if (SetProperty(ref _selectedCategoryFilter, value)) ApplyFilters(); }
+    }
+
+    private PriorityLevel? _selectedPriorityFilter;
+    public PriorityLevel? SelectedPriorityFilter
+    {
+        get => _selectedPriorityFilter;
+        set { if (SetProperty(ref _selectedPriorityFilter, value)) ApplyFilters(); }
+    }
+
+    public IEnumerable<PriorityLevel> PriorityLevels => Enum.GetValues(typeof(PriorityLevel)).Cast<PriorityLevel>();
+
     public void RefreshNotes()
     {
         _allNotes = _repository.GetAllNotes().ToList();
+        ApplyFilters();
+    }
+
+    private void ApplyFilters()
+    {
+        var filtered = _searchService.AdvancedFilter(
+            _allNotes, 
+            SearchText, 
+            SelectedCategoryFilter?.Id, 
+            SelectedPriorityFilter);
+
         Notes.Clear();
-        foreach (var note in _allNotes)
+        foreach (var note in filtered)
         {
             Notes.Add(note);
         }
