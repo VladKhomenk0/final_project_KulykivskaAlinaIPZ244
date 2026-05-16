@@ -60,6 +60,35 @@
                 <Button Grid.Column="2" Content="↷" Command="{Binding RedoCommand}" 
                         Width="50" Height="60" Margin="8,0,0,0" ToolTip="Повторити дію" Background="#B0B0B0" FontSize="20"/>
             </Grid>
+            
+            <GroupBox Header="Пошук та фільтрація" Padding="15" 
+                      BorderBrush="{DynamicResource SubHeaderBrush}" Foreground="{DynamicResource SubHeaderBrush}">
+                <StackPanel>
+                    <TextBlock Text="Пошук за текстом:" FontSize="14" Margin="0,0,0,5" Foreground="{DynamicResource SubHeaderBrush}"/>
+                    <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="40" Margin="0,0,0,15" Padding="12,8" 
+                             VerticalContentAlignment="Center" FontSize="14"
+                             Background="{DynamicResource CardBgBrush}" Foreground="{DynamicResource HeaderBrush}"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,0,10,0">
+                            <TextBlock Text="Категорія:" FontSize="14" Margin="0,0,0,5" Foreground="{DynamicResource SubHeaderBrush}"/>
+                            <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategoryFilter}" 
+                                      DisplayMemberPath="Name" Height="35" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                            <TextBlock Text="Пріоритет:" FontSize="14" Margin="0,0,0,5" Foreground="{DynamicResource SubHeaderBrush}"/>
+                            <ComboBox ItemsSource="{Binding PriorityLevels}" 
+                                      SelectedItem="{Binding SelectedPriorityFilter}" 
+                                      Height="35" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
 
         <ListBox Grid.Row="2" ItemsSource="{Binding Notes}" DisplayMemberPath="Title" 
