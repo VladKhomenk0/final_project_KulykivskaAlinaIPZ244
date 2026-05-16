@@ -54,6 +54,21 @@ public class NoteEditorViewModel : ViewModelBase
         }
     }
 
+    public string NoteColor
+    {
+        get => CurrentNote.ColorHex ?? "#A8D5BA";
+        set
+        {
+            CurrentNote.ColorHex = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public List<string> AvailableColors { get; } = new()
+    {
+        "#A8D5BA", "#FFD1DC", "#FFECB3", "#B3E5FC", "#D1C4E9", "#E1F5FE", "#FFFFFF"
+    };
+
     public string ReminderMessage
     {
         get => ActiveReminder?.Message ?? string.Empty;
@@ -118,6 +133,7 @@ public class NoteEditorViewModel : ViewModelBase
     }
 
     public RelayCommand SaveCommand { get; }
+    public RelayCommand SetColorCommand { get; }
 
     public NoteEditorViewModel(Note note, INoteRepository repository)
     {
@@ -128,6 +144,7 @@ public class NoteEditorViewModel : ViewModelBase
         _hasReminder = Reminders.Count > 0;
         
         SaveCommand = new RelayCommand(obj => Save(), obj => !HasErrors);
+        SetColorCommand = new RelayCommand(color => { NoteColor = color?.ToString() ?? "#A8D5BA"; });
         
         ValidateAll();
     }

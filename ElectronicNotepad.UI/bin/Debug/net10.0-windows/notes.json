@@ -8,6 +8,7 @@
     "CategoryId": null,
     "Priority": 1,
     "IsPinned": false,
+    "ColorHex": "#A8D5BA",
     "Reminders": [
       {
         "Id": "b1ccd458-6156-49d7-96f4-67376e7c8ea5",
@@ -28,6 +29,7 @@
     "CategoryId": null,
     "Priority": 1,
     "IsPinned": false,
+    "ColorHex": "#A8D5BA",
     "Reminders": [
       {
         "Id": "a707c0fd-7e3e-4dc2-b875-6559c7e2adf0",
@@ -44,10 +46,11 @@
     "Title": "Приготувати каву",
     "Content": "Кава(арабіка)",
     "CreatedAt": "2026-05-12T18:01:48.0148255Z",
-    "UpdatedAt": "2026-05-16T20:58:47.1165374Z",
-    "CategoryId": null,
+    "UpdatedAt": "2026-05-16T21:40:44.3921707Z",
+    "CategoryId": "fd6a0971-1ab2-4f72-b681-7a5f16b918ff",
     "Priority": 1,
     "IsPinned": true,
+    "ColorHex": "#B3E5FC",
     "Reminders": [
       {
         "Id": "37d521c1-95e8-4f24-8491-0edf7292621d",
@@ -68,6 +71,7 @@
     "CategoryId": "e7c9001d-c83c-4d71-a472-21258fb7eeda",
     "Priority": 1,
     "IsPinned": false,
+    "ColorHex": "#A8D5BA",
     "Reminders": [],
     "Tags": []
   }

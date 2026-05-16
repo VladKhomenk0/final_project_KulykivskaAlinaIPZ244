@@ -1,7 +1,7 @@
 <Window x:Class="ElectronicNotepad.UI.Views.AddNoteWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Редагування" Height="600" Width="550" 
+        Title="Редагування" Height="650" Width="600" 
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         Background="{DynamicResource WindowBgBrush}">
     <Window.Resources>
@@ -46,6 +46,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -81,15 +82,57 @@
                 <ComboBox ItemsSource="{Binding PriorityLevels}" SelectedItem="{Binding Priority}" Height="35"/>
             </StackPanel>
         </Grid>
+
+        <StackPanel Grid.Row="3" Margin="0,0,0,15">
+            <TextBlock Text="Колір мітки" FontSize="12" Margin="0,0,0,5"/>
+            <ItemsControl ItemsSource="{Binding AvailableColors}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Width="34" Height="34" Margin="0,0,10,0" 
+                                Command="{Binding DataContext.SetColorCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                CommandParameter="{Binding}">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="ColorBorder" Background="{Binding}" CornerRadius="17" BorderThickness="3" BorderBrush="Transparent">
+                                                    <Grid x:Name="CheckIcon" Visibility="Collapsed">
+                                                        <TextBlock Text="✓" Foreground="#4A6A4A" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <DataTrigger Value="True">
+                                                        <DataTrigger.Binding>
+                                                            <Binding Path="IsMouseOver" RelativeSource="{RelativeSource Self}"/>
+                                                        </DataTrigger.Binding>
+                                                        <Setter TargetName="ColorBorder" Property="BorderThickness" Value="4"/>
+                                                    </DataTrigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
         
-        <TextBlock Grid.Row="3" Text="Зміст" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
-        <TextBox Grid.Row="4" Text="{Binding CurrentNote.Content, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="4" Text="Зміст" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"/>
+        <TextBox Grid.Row="5" Text="{Binding CurrentNote.Content, UpdateSourceTrigger=PropertyChanged}" 
                  TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="0,0,0,15" MinHeight="100"/>
 
-        <CheckBox Grid.Row="5" Content="Увімкнути нагадування" IsChecked="{Binding HasReminder}" 
+        <CheckBox Grid.Row="6" Content="Увімкнути нагадування" IsChecked="{Binding HasReminder}" 
                   Margin="0,0,0,15" VerticalContentAlignment="Center" Foreground="{DynamicResource HeaderBrush}"/>
 
-        <GroupBox Grid.Row="6" Header="Нагадування" 
+        <GroupBox Grid.Row="7" Header="Нагадування" 
                   Visibility="{Binding HasReminder, Converter={StaticResource BoolToVis}}" 
                   Margin="0,0,0,20" Padding="15" BorderBrush="{DynamicResource BorderBrush}" Foreground="{DynamicResource SubHeaderBrush}">
             <StackPanel>
@@ -114,7 +157,7 @@
             </StackPanel>
         </GroupBox>
         
-        <Button Grid.Row="7" Content="Зберегти" Command="{Binding SaveCommand}" 
+        <Button Grid.Row="8" Content="Зберегти" Command="{Binding SaveCommand}" 
                 Height="45" Click="SaveButton_Click" FontSize="16"/>
     </Grid>
 </Window>
