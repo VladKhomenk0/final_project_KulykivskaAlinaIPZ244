@@ -49,6 +49,7 @@ public class NoteRepository : INoteRepository
             existing.Priority = note.Priority;
             existing.CategoryId = note.CategoryId;
             existing.IsPinned = note.IsPinned;
+            existing.ColorHex = note.ColorHex;
             existing.UpdatedAt = DateTime.UtcNow;
             _context.SaveNotes(_notes);
         }
