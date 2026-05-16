@@ -1,4 +1,5 @@
 using System.Windows;
+using ElectronicNotepad.UI.ViewModels;
 
 namespace ElectronicNotepad.UI.Views;
 

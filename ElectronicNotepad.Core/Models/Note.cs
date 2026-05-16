@@ -14,6 +14,7 @@ public class Note
     
     public Guid? CategoryId { get; set; }
     public PriorityLevel Priority { get; set; } = PriorityLevel.Medium;
+    public bool IsPinned { get; set; } = false;
     
     public List<Reminder> Reminders { get; set; } = new();
     public List<Tag> Tags { get; set; } = new();
