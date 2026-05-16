@@ -29,5 +29,3 @@ C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.UI\obj\Debug\ne
 C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.UI\obj\Debug\net10.0-windows\App.baml
 C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.UI\obj\Debug\net10.0-windows\ElectronicNotepad.UI.sourcelink.json
 C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.UI\obj\Debug\net10.0-windows\Themes\DarkTheme.baml
-C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.UI\obj\Debug\net10.0-windows\Views\NoteAnalyticsWindow.baml
-C:\Users\alina\RiderProjects\ElectronicNotepad\ElectronicNotepad.UI\obj\Debug\net10.0-windows\Views\NoteAnalyticsWindow.g.cs
